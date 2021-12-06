@@ -3,6 +3,7 @@
 
     <data>
 <!-- tree view -->
+
         <record id="stock_valuation_layer_tree_views" model="ir.ui.view">
             <field name="name">stock_valuation_layer_tree</field>
             <field name="model">stock.valuation.layer</field>
