@@ -18,35 +18,35 @@ class StockPicking(models.Model):
     _inherit="stock.picking"
     
     partner_category = fields.Many2one(string='Partner Category', related='partner_id.client_category_id', store=True)
-    customer_location = fields.Many2one(string='Customer Location', related='partner_id.property_stock_customer')
-    vendor_location = fields.Many2one(string='Vendor Location', related='partner_id.property_stock_supplier')
-    customer_company = fields.Many2one(string='Customer Company', related='partner_id.company_id')
-    district = fields.Many2one(string='District', related='partner_id.district_id')
+    customer_location = fields.Many2one(string='Customer Location', related='partner_id.property_stock_customer', store=True)
+    vendor_location = fields.Many2one(string='Vendor Location', related='partner_id.property_stock_supplier', store=True)
+    customer_company = fields.Many2one(string='Customer Company', related='partner_id.company_id', store=True)
+    district = fields.Many2one(string='District', related='partner_id.district_id', store=True)
 
 class PurchaseOrder(models.Model):
     _inherit="purchase.order"
     
     partner_category = fields.Many2one(string='Partner Category', related='partner_id.client_category_id', store=True)
-    customer_location = fields.Many2one(string='Customer Location', related='partner_id.property_stock_customer')
-    vendor_location = fields.Many2one(string='Vendor Location', related='partner_id.property_stock_supplier')
-    customer_company = fields.Many2one(string='Customer Company', related='partner_id.company_id')
-    district = fields.Many2one(string='District', related='partner_id.district_id')
+    customer_location = fields.Many2one(string='Customer Location', related='partner_id.property_stock_customer', store=True)
+    vendor_location = fields.Many2one(string='Vendor Location', related='partner_id.property_stock_supplier', store=True)
+    customer_company = fields.Many2one(string='Customer Company', related='partner_id.company_id', store=True)
+    district = fields.Many2one(string='District', related='partner_id.district_id', store=True)
 
 class AccountMove(models.Model):
     _inherit="account.move"
     
     partner_category = fields.Many2one(string='Partner Category', related='partner_id.client_category_id', store=True)
-    customer_location = fields.Many2one(string='Customer Location', related='partner_id.property_stock_customer')
-    vendor_location = fields.Many2one(string='Vendor Location', related='partner_id.property_stock_supplier')
-    customer_company = fields.Many2one(string='Customer Company', related='partner_id.company_id')
+    customer_location = fields.Many2one(string='Customer Location', related='partner_id.property_stock_customer', store=True)
+    vendor_location = fields.Many2one(string='Vendor Location', related='partner_id.property_stock_supplier', store=True)
+    customer_company = fields.Many2one(string='Customer Company', related='partner_id.company_id', store=True)
 
 class AccountPayment(models.Model):
     _inherit="account.payment"
     
     partner_category = fields.Many2one(string='Partner Category', related='partner_id.client_category_id', store=True)
-    customer_location = fields.Many2one(string='Customer Location', related='partner_id.property_stock_customer')
-    vendor_location = fields.Many2one(string='Vendor Location', related='partner_id.property_stock_supplier')
-    customer_company = fields.Many2one(string='Customer Company', related='partner_id.company_id')                                                                      
+    customer_location = fields.Many2one(string='Customer Location', related='partner_id.property_stock_customer', store=True)
+    vendor_location = fields.Many2one(string='Vendor Location', related='partner_id.property_stock_supplier', store=True)
+    customer_company = fields.Many2one(string='Customer Company', related='partner_id.company_id', store=True)                                                                      
 
 class SaleOrder(models.Model):
     _inherit="sale.order"
@@ -60,10 +60,10 @@ class SaleOrder(models.Model):
 class SaleReport(models.Model):
     _inherit="sale.report"
     
-    customer_location = fields.Many2one(string='Customer Location', related='partner_id.property_stock_customer')
-    vendor_location = fields.Many2one(string='Vendor Location', related='partner_id.property_stock_supplier')
-    customer_company = fields.Many2one(string='Customer Company', related='partner_id.company_id')
-    district = fields.Many2one(string='District', related='partner_id.district_id')
+    customer_location = fields.Many2one(string='Customer Location', related='partner_id.property_stock_customer', store=True)
+    vendor_location = fields.Many2one(string='Vendor Location', related='partner_id.property_stock_supplier', store=True)
+    customer_company = fields.Many2one(string='Customer Company', related='partner_id.company_id', store=True)
+    district = fields.Many2one(string='District', related='partner_id.district_id', store=True)
 
     def _query(self, with_clause="", fields=None, groupby="", from_clause=""):
         if fields is None:
