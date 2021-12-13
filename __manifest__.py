@@ -15,6 +15,7 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base','sale', 'stock', 'product', 'purchase', 'account', 'sales_customisations'],
+
     # always loaded
     'data': [
         # 'views/categorization_views.xml',
