@@ -64,22 +64,34 @@ class SaleReport(models.Model):
     _inherit="sale.report"
 
 
-    partner_category_id = fields.Many2one(string='Partner Category', related='partner_id.client_category_id', store=True)
-    partner_district_id = fields.Many2one(string='Partner District', related='partner_id.district_id', store=True)
-    partner_city_id = fields.Many2one(string='Partner City', related='partner_district_id.city_id', store=True)
-    partner_company_id = fields.Many2one(string='Partner Company', related='partner_id.company_id', store=True)
+    partner_category_id = fields.Many2one('res.category', string='Partner Category')
+    partner_district_id = fields.Many2one('res.city.district', string='Partner District')
+    partner_city_id = fields.Many2one('res.city', string='Partner City')
+    partner_company_id = fields.Many2one('res.company', string='Partner Company')
 
     def _query(self, with_clause="", fields=None, groupby="", from_clause=""):
         if fields is None:
             fields = {}
-        select_str = """,
-            s.partner_category_id as partner_category_id, 
-            s.partner_district_id as partner_district_id, 
-            s.partner_city_id as partner_city_id,
+        partner_category_id_select_str = """,
+            s.partner_category_id as partner_category_id
+		"""
+        partner_district_id_select_str = """,
+            s.partner_district_id as partner_district_id
+		"""
+        partner_city_id_select_str = """,
+            s.partner_city_id as partner_city_id
+		"""
+        partner_company_id_select_str = """,
             s.partner_company_id as partner_company_id
 		"""
         
-        fields.update({"partner_category_id, partner_district_id, partner_city_id, partner_company_id": select_str})
+        fields.update({
+            "partner_category_id": partner_category_id_select_str,
+            "partner_district_id": partner_district_id_select_str,
+            "partner_city_id": partner_city_id_select_str,
+            "partner_company_id": partner_company_id_select_str
+        })
+
         return super()._query(
             with_clause=with_clause,
             fields=fields,
