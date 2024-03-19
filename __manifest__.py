@@ -14,7 +14,7 @@
     'version': '13.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','sale', 'stock', 'product', 'purchase', 'account', 'sales_customisations'],
+    'depends': ['base','sale', 'stock', 'product', 'purchase', 'account', 'sales_customisations', 'res_category'],
 
     # always loaded
     'data': [

@@ -69,35 +69,26 @@ class SaleReport(models.Model):
     partner_city_id = fields.Many2one('res.city', string='Partner City')
     partner_company_id = fields.Many2one('res.company', string='Partner Company')
 
-    def _query(self, with_clause="", fields=None, groupby="", from_clause=""):
-        if fields is None:
-            fields = {}
-        partner_category_id_select_str = """,
-            s.partner_category_id as partner_category_id
-		"""
-        partner_district_id_select_str = """,
-            s.partner_district_id as partner_district_id
-		"""
-        partner_city_id_select_str = """,
-            s.partner_city_id as partner_city_id
-		"""
-        partner_company_id_select_str = """,
-            s.partner_company_id as partner_company_id
-		"""
-        
-        fields.update({
-            "partner_category_id": partner_category_id_select_str,
-            "partner_district_id": partner_district_id_select_str,
-            "partner_city_id": partner_city_id_select_str,
-            "partner_company_id": partner_company_id_select_str
-        })
 
-        return super()._query(
-            with_clause=with_clause,
-            fields=fields,
-            groupby=groupby,
-            from_clause=from_clause,
-        )
+    def _select_sale(self):
+        select_ = super(SaleReport, self)._select_sale()
+
+        select_ += """,
+            s.partner_category_id AS partner_category_id,
+            s.partner_district_id AS partner_district_id,
+            s.partner_city_id AS partner_city_id,
+            s.partner_company_id AS partner_company_id"""
+        return select_
+
+    def _group_by_sale(self):
+        group_by = super(SaleReport, self)._group_by_sale()
+
+        group_by += """,
+            s.partner_category_id,
+            s.partner_district_id,
+            s.partner_city_id,
+            s.partner_company_id"""
+        return group_by
 
 
 
